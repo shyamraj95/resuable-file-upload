@@ -1,0 +1,32 @@
+<input id="file-input" class="hidden" (change)="onChange($event)" type="file" [accept]="acceptedFileTypes"
+    [multiple]="isMultipleFilesAllow" />
+<input class="hidden" [formControlName]="controlName" />
+
+<div *ngIf="draggable; else simpleUpload" for="file-input" class="drop-zone" dropzone [class.hovering]="isHovering"
+    (dragover)="dragStart($event)" (dragleave)="isHovering= false;" (drop)="onDropSuccess($event)">
+    <ng-container *ngTemplateOutlet="fileUpload"></ng-container>
+</div>
+
+<ng-template #simpleUpload>
+    <ng-container *ngTemplateOutlet="fileUpload"></ng-container>
+</ng-template>
+
+<ng-template #fileUpload>
+    <div class="file-container">
+        <label for="file-input" class="file-upload">
+            <mat-icon fontIcon="drive_folder_upload"></mat-icon>
+            <strong>{{dropZoneLabel || 'Choose a file'}}</strong>
+            <span class="box_dragndrop" *ngIf="draggable && !dropZoneLabel"> or drag it here</span>
+        </label>
+        <div class="chipList-container">
+            <mat-chip-listbox #chipList class="chiplist">
+                <mat-chip *ngFor="let file of attachedFiles" (removed)="removeFile(file)" matTooltip="{{file.name}}">
+                    {{file.name | slice :- 8 }}
+                    <button matChipRemove>
+                        <mat-icon aria-hidden="false" aria-label="close" fontIcon="close"></mat-icon>
+                    </button>
+                </mat-chip>
+            </mat-chip-listbox>
+        </div>
+    </div>
+</ng-template>

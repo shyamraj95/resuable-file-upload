@@ -1,0 +1,53 @@
+.drop-zone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    // width: 250px;
+    font-weight: 200;
+    height: 150px;
+    width: 300px;
+    border: 2px dashed #f16624;
+    border-radius: 5px;
+    background: #ffffffb2;
+    margin: 10px 0;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    cursor: copy;
+
+    &.hovering {
+        border: 2px solid #f16624;
+        color: #dadada !important;
+    }
+}
+
+.file-label {
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+.chipList-container {
+    display: inline;
+}
+
+.file-container {
+    display: block;
+}
+
+.file-upload {
+    cursor: pointer;
+}
+
+.mat-mdc-chip.mat-mdc-standard-chip {
+    --mdc-chip-container-height: 35px;
+}
+
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+    .drop-zone {
+        backdrop-filter: blur(14.9px);
+        -webkit-backdrop-filter: blur(14.9px);
+    }
+}

@@ -1,0 +1,11 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+
+    <app-resuable-file-upload controlName="uploadFiles" [isMultipleFilesAllow]="true" [draggable]="true"
+        dropZoneLabel="Choose a file" [allowedFileTypes]="['pdf','jpg']"></app-resuable-file-upload>
+    <mat-form-field>
+        <input matInput formControlName="remark" type="text" id="displayName">
+    </mat-form-field>
+    <div class="action-btn">
+        <button mat-button color="primary" type="submit">Primary</button>
+    </div>
+</form>
